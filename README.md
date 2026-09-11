@@ -1,0 +1,61 @@
+# QA Scorecard Studio
+
+A working prototype built for the Lemonade Operations Manager take-home case study.
+
+**Live: https://jeremyacd.github.io/Qa-Scorecard-Studio/**
+
+One HTML file. Vanilla JavaScript. No build step, no package install, no framework. Open the link, or download `index.html` and double-click it.
+
+## Start here
+
+Open the **Write-up** tab first. It is deliverable 5, one short paragraph per part, and it opens with a guided tour that points you at the tab answering each section of the brief. Everything else in the tool is reachable from there.
+
+## Where each deliverable lives
+
+| Brief | Tab | What it covers |
+|---|---|---|
+| Part 1, The Refactor | Score a call | The scoring form, rendered entirely from config |
+| Part 1 | Agent scoreboard | Agent averages, filters, the 85% alert, and the analyst's own stats |
+| Part 1 | Scorecard builder | Where QA edits questions, weights, and call types without an engineer |
+| Part 1 | Config | The raw JSON the renderer reads, editable in place |
+| Part 2, Scaling to 50,000 | Auto-scoring | Two workflow options, the cost model with assumptions and arithmetic, failure points |
+| Part 3, When it gets it wrong | Review queue | What gets routed to a human and why |
+| Part 3 | Calibration | Agreement measurement, the human ceiling, and how QA corrects the scorer |
+| Part 4, Hand-off to IT | IT handoff | End-to-end map, the 31-rule specification, and every scrappy shortcut named |
+| Deliverable 5 | Write-up | The reasoning for each part, plus what I would do next |
+| Deliverable 6 | AI notes | How I steered the AI, and which decisions were mine |
+| Added | SOP | An editable operating procedure for the QA team, housed in the tool |
+
+## What runs in this copy
+
+Everything works except one control. The **Score this call** button on the Auto-scoring tab sends a transcript to a live model, and that call only functions on a Claude-hosted page. On this GitHub Pages copy the button is disabled and the tool says why on screen.
+
+The rest of Part 2 is fully present: the generated prompt, both workflow pathways, the editable cost model, and the failure analysis. If you want to see the live call fire, ask me for the Claude-hosted link.
+
+## How it is built
+
+Scorecards are data, not code. The renderer contains no branch for AutoClaim, Underwriting, or anything else. It draws whatever the config object hands it. A QA lead adds a call type in the builder, publishes it, and the scoring form changes on the next load.
+
+Published scorecards are versioned. Every evaluation records the version it was scored under, so reopening an old score shows the questions as they were on the day, not as they are now.
+
+State lives in browser localStorage on your device. Nothing is sent anywhere. The only outbound request is to Google Fonts.
+
+## Sample data
+
+All transcripts, agent names, and scores in the tool are invented for the demo. There is no real customer data, no PII, and no credentials anywhere in this repository.
+
+## Known limits
+
+The prototype has no authentication, so anyone can log coaching as anyone. Config and evaluations sit in browser storage rather than a database, which means they are per-device and a cleared cache wipes them. Nothing exports to a warehouse.
+
+Those are deliberate shortcuts, and each one is named with a proposed replacement on the **IT handoff** tab. That tab is the honest inventory.
+
+## Resetting the demo
+
+The Config tab has a **Reset everything** control that clears local storage and restores the seeded data. Use it if you want a clean run.
+
+## Copyright
+
+Copyright © 2026 Jeremy Jacobs. All rights reserved.
+
+Built as a take-home case study for Lemonade's Operations Manager role. Shared for evaluation purposes. Not licensed for reuse, redistribution, or derivative works.
